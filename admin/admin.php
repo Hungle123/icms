@@ -1,13 +1,13 @@
  <?php
     include ('../includes/header.php');
-    include ('../includes/sidebar-a.php');
+    include ('../includes/sidebar-admin.php');
 
 
  ?>
  <div id="content">
         <h2>Welcome to Admin control panal</h2>
         <div>
-            <p>Chao mung ban den voi admin page</p>
+            <p>Welcome to you go to the izCMS admin panal, I can you feelling good </p>
         </div>
         
 
