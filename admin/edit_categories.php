@@ -36,6 +36,7 @@
           confirm_query($r,$q);
 	   			if(mysqli_affected_rows($dbc) == 1){
 	   				$message = "<p class='success'> The categories was updated successfly</p>";
+            redirest_to('admin/view_categories.php');
 	   			}else{
 	   				$message = "<p class='warning'>COuld not the update categories due to the systom error</p>";
 	   			}
@@ -46,17 +47,19 @@
 
    	?>
    	 <div id="content">
-   	<h2>Edit a Categories: <?php if(isset($_GET['name'])) echo $_GET['name']?></h2>
-   	<?php if(!empty($message)) echo $message ;?>
-    <?php
-          $q = "SELECT cat_name, positon, cat_id FROM categories WHERE cat_id={$cid}";
+     <?php
+          $q = "SELECT cat_name, position FROM categories WHERE cat_id={$cid}";
           $r = mysqli_query($dbc, $q);
           confirm_query($r,$q);
-          if(mysqli_num_rows($r) > 0){
-              list($cats) = mysqli_fetch_array($r,MYSQLI_ASSOC);
-          } 
-
+          if(mysqli_num_rows($r) == 1){
+              list($cat_name, $position) = mysqli_fetch_array($r,MYSQLI_NUM);
+          }else{
+            $message = "<p class='warning'>The update errors</p>";
+          }
     ?>
+   	<h2>Edit a Categories: <?php if(isset($cat_name)) echo $cat_name;?></h2>
+   	<?php if(!empty($message)) echo $message ;?>
+    
    	<form action="" id="add_cat" method="post">
    		<fieldset>
    			<legend>Add Categories</legend>
@@ -69,7 +72,7 @@
 					 ?>
    				</label>
 				<input type="text" id="category" name="category" maxlength="80" value="<?php        
-          if(isset($_POST['category'])) echo strip_tags($_POST['category']);?> " size="20" tabindex="1">
+          if(isset($cat_name)) echo strip_tags($cat_name);?> " size="20" tabindex="1">
    			</div>
 			
 			<div>	
@@ -88,7 +91,7 @@
 							list($num) = mysqli_fetch_array($r,MYSQLI_NUM);
 							for($i =1 ;$i <=$num+1;$i++){
 								echo "<option value='{$i}'";
-								if(isset($_POST['position']) && $_POST['position'] == $i) echo "selected = 'selected'";
+								if(isset($position) && $position == $i) echo "selected = 'selected'";
 								echo ">".$i."</option>";
 							}
 						}
@@ -98,7 +101,7 @@
    			</div>
 
    		</fieldset>
-   		<p><input type="submit" name="submit" value="Add Category"></p>
+   		<p><input type="submit" name="submit" value="Update Category"></p>
    	</form>   
  </div><!--end content-->
 <?php

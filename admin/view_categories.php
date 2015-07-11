@@ -49,8 +49,8 @@
               <td>{$cats['cat_name']}</td>
               <td>{$cats['position']}</td>
               <td>{$cats['name']}</td>
-              <td><a class='edit' href='edit_categories.php?cid={$cats['cat_id']}&name={$cats['cat_name']}'>Edit</a></td>
-              <td><a class='delete' href='delete_categories.php?cid={$cats['cat_id']}'>Delete</a></td>
+              <td><a class='edit' href='edit_categories.php?cid={$cats['cat_id']}'>Edit</a></td>
+              <td><a class='delete' href='delete_categories.php?cid={$cats['cat_id']}&cat_name={$cats['cat_name']}'>Delete</a></td>
             </tr>
             ";
         }
