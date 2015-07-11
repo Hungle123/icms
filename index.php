@@ -1,7 +1,8 @@
  <?php
     include ('includes/header.php');
-    include ('includes/sidebar-a.php');
-
+    include ('includes/mysqli_connect.php');
+    include ('includes/functions.php');
+    include ('includes/sidebar-a.php');  
 
  ?>
  <div id="content">
