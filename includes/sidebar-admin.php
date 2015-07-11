@@ -3,5 +3,6 @@
     	   <ul class="navi">
 	           <li><a href="add_categories.php">Add Categories</a>
 	           <li><a href="add_pages.php">Add Pages</a>
+	           <li><a href="view_categories.php">View Categories</a>
     	   </ul>
     </div><!--end section-navigation-->

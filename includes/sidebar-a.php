@@ -8,10 +8,10 @@
         if(isset($_GET['cid']) && filter_var($_GET['cid'], FILTER_VALIDATE_INT, array('min_range' => 1))) {
             $cid = $_GET['cid'];
             $pid = NULL;
-        }elseif (isset($_GET['pid']) && filter_var($_GET['pid'], FILTER_VALIDATE_INT, array('min_range' => 1))) {
+        }elseif (isset($_GET['pid']) && filter_var($_GET['pid'],FILTER_VALIDATE_INT,array('min_range' =>1))) {
             $pid = $_GET['pid'];
             $cid = NULL;
-        }else{
+        } else{
             $cid = NULL;
             $pid = NULL;
         }
@@ -35,8 +35,8 @@
             // Lay pages tu csdl
             while($pages = mysqli_fetch_array($r1, MYSQLI_ASSOC)) { 
                 echo "<li><a href='index.php?pid={$pages['page_id']}'";
-                    if($pages['page_id'] == $pid) echo "class='selected'";
-                echo">".$pages['page_name']."</a></li>";
+                    if($pages['page_id'] == $pid) echo "class='selected'"; 
+                echo ">".$pages['page_name']."</a></li>";
                 
             } // End WHILE pages
                 echo "</ul>";
