@@ -9,7 +9,7 @@
  <?php
     if(isset($_GET['cid']) && filter_var($_GET['cid'],FILTER_VALIDATE_INT,array('min_range' =>1))){
         $cid = $_GET['cid'];
-        $q = "SELECT p.page_name, p.page_id, LEFT(p.content, 400) AS content,";
+        $q = "SELECT p.page_name, p.page_id,p.content,";
         $q .= " DATE_FORMAT(p.post_on, '%b %d %Y') AS date, ";
         $q .= " CONCAT_WS(' ',u.first_name, u.last_name) AS name,u.user_id ";
         $q .= " FROM pages as p INNER JOIN user AS u ";

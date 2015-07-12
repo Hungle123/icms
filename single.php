@@ -27,6 +27,7 @@
 
  ?>
   <div id="content">
+
  <?php
     foreach ($posts as $post) {
        echo "
@@ -40,6 +41,7 @@
     }
     
  ?>
+ <?php include ('includes/comment_form.php'); ?>
        </div><!--end content-->
 <?php
         include ('includes/sidebar-b.php');

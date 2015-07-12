@@ -50,7 +50,7 @@
               <td>{$pages['page_name']}</td>
               <td>{$pages['date']}</td>
               <td>{$pages['name']}</td>
-              <td>{$pages['content']}</td>
+              <td>".the_excerpt($pages['content'])."</td>
               <td><a class='edit' href='edit_pages.php?pid={$pages['page_id']}'>Edit</a></td>
               <td><a class='delete' href='delete_pages.php?pid={$pages['page_id']}&page_name={$pages['page_name']}'>Delete</a></td>
             </tr>

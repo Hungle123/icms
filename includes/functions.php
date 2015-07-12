@@ -19,7 +19,15 @@
 
 	// function cat noi dung pages
 	function the_excerpt($text){
-		return substr($text,0,strrpos($text,' '));
+		$sanitized = htmlentities($text, ENT_COMPAT,'UTF-8');
+		if(strlen($sanitized) > 400){
+			$cutString = substr($sanitized, 0, 400);
+			$word = substr($sanitized, 0,strrpos($cutString, ' '));
+			return $word;
+		}else{
+			return $sanitized;
+		}
+	
 	}
 
 	function validate_id($id){
@@ -45,6 +53,7 @@
 	}
 
 	function the_content($text){
-		return str_replace(array("\r\n", "\n"), array("<p>","</p>"),$text);
+		$sanitized = htmlentities($text, ENT_COMPAT,'UTF-8');
+		return str_replace(array("\r\n", "\n"), array("<p>","</p>"),$sanitized);
 	}
 ?>
