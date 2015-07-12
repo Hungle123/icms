@@ -4,7 +4,7 @@
 <head>
 	<meta charset='UTF-8' />
 	
-	<title></title>
+	<title>izCMS - <?php echo isset($title) ? $title :"My Home pages";?></title>
 	
 	<link rel='stylesheet' href='css/style.css' />
 </head>
@@ -12,7 +12,7 @@
 <body>
 	<div id="container">
 	<div id="header">
-		<h1><a href="">izCMS</a></h1>
+		<h1><a href="index.php">izCMS</a></h1>
         <p class="slogan">The iz Content Management System</p>
 	</div>
 	<div id="navigation">

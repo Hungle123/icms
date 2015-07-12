@@ -5,7 +5,33 @@
     include ('includes/sidebar-a.php');  
 
  ?>
- <div id="content">
+  <div id="content">
+ <?php
+    if(isset($_GET['cid']) && filter_var($_GET['cid'],FILTER_VALIDATE_INT,array('min_range' =>1))){
+        $cid = $_GET['cid'];
+        $q = "SELECT p.page_name, p.page_id, LEFT(p.content, 400) AS content,";
+        $q .= " DATE_FORMAT(p.post_on, '%b %d %Y') AS date, ";
+        $q .= " CONCAT_WS(' ',u.first_name, u.last_name) AS name,u.user_id ";
+        $q .= " FROM pages as p INNER JOIN user AS u ";
+        $q .= " USING(user_id) WHERE p.cat_id = {$cid} ";
+        $q .= " ORDER BY date ASC LIMIT 0,10 ";
+        $r = mysqli_query($dbc, $q);
+        confirm_query($r, $q);
+        if(mysqli_num_rows($r) > 0){
+            while ($pages = mysqli_fetch_array($r,MYSQLI_ASSOC)) {
+                echo "
+                    <div class='post'>
+                        <h2><a href='single.php?pid={$pages['page_id']}'>{$pages['page_name']}</a></h2>
+                        <p>".the_excerpt($pages['content'])." ... <a href='single.php?pid={$pages['page_id']}'>Read more</a></p>
+                        <p class='meta'><strong>Posted by: </strong>{$pages['name']} | <strong>On: </strong>{$pages['date']}</p>
+
+                    </div>
+                ";
+            }
+        }
+    }
+
+ ?>
    
         <h2>Welcome To izCMS</h2>
         <div>
